@@ -1,0 +1,172 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+
+  <title>DispatchHealth Client Dashboard</title>
+
+  <meta name="description" content="The DispatchHealth Client Dashboard">
+  <meta name="author" content="Dan Edstrom">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/components/dropdown.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/components/dropdown.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+  <!-- {{ url_for('static', filename='submit.css') }} -->
+  <link rel="stylesheet" type="text/css" href="../static/submit.css">
+  <script type="text/javascript" src="../static/submit.js"></script>
+
+</head>
+
+<body>
+  <div class="ui fixed  menu">
+    <div class="ui container">
+      <a href="/" class="header item">
+        DispatchHealth Client Dashboard
+      </a>
+    </div>
+  </div>
+
+  <div class="ui main container one column grid">
+
+    <div class="ui icon message">
+      <div class="content">
+        <div class="header">
+          Create a Client Overview Report
+        </div>
+        <ul class="list">
+          <li>Leaving dates blank will result in the prior complete month</li>
+          <li>Leaving other fields blank will include all options</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <h1 class="ui dividing header">Enter Filter Parameters</h1>
+    </div> -->
+
+    <form action="/report" method='POST' class="ui form">
+
+      <div class="row">
+        <div class="field sixteen wide column">
+          <label>Select a Market</label>
+          <!-- Start filtered dropdown list - This could be used to filter the dropdown based on job category! -->
+          <select id="select_market" name="market" class="ui dropdown" multiple="">
+            <option value="">Market</option>
+            {% for market in market_list %}
+              <option class="market_option" value='{{ market }}'>{{ market }}</option>
+            {% endfor %}
+          </select>
+          <!-- End filtered dropdown list -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field sixteen wide column">
+          <label>Start Date</label>
+            <input name="start_date" type="date"/>
+        </div>
+        <div class="field sixteen wide column">
+          <label>End Date (Not Inclusive)</label>
+            <input name="end_date" type="date"/>
+          <!-- End filtered dropdown list -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field sixteen wide column">
+          <label>Select Channel Type(s)</label>
+              <select id="select_subtype" name="subtype" class="ui fluid search dropdown" multiple="">
+                <option value="">Channel Type</option>
+                {% for subtype in subtype_list %}
+                  <option class="subtype_option" value='{{ subtype }}'>{{ subtype }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+      <div class="row">
+        <div class="field sixteen wide column">
+          <label>Select Channel(s)</label>
+              <select id="select_channel" name="channel" class="ui fluid search dropdown" multiple="">
+                <option value="">Channel</option>
+                {% for channel in channel_list %}
+                  <option class="channel_option" value='{{ channel }}'>{{ channel }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+      <br/>
+      <br/>
+      <button class="ui primary button" type="submit">Create Report</button>
+      </div>
+    </form>
+
+  </div>
+  <script>
+  $(function() {
+    var dropdown = {
+      market: $('#select_market'),
+      channels: $('#select_channel'),
+      subtype:$('#select_subtype')
+    };
+
+    function getSelectValues(select) {
+      var result = [];
+      var options = select && select.options;
+      var opt;
+
+      for (var i=0, iLen=options.length; i<iLen; i++) {
+        opt = options[i];
+
+        if (opt.selected) {
+          result.push(opt.value || opt.text);
+        }
+      }
+      return result;
+    }
+
+  });
+
+  $(document).ready(function() {
+
+    $('#select_market')
+      .dropdown({
+        allowAdditions: true,
+        fullTextSearch: true
+
+     })
+    ;
+
+    $('#select_channel')
+      .dropdown({
+        allowAdditions: true,
+        fullTextSearch: true
+
+     })
+    ;
+
+    $('#select_subtype')
+      .dropdown({
+        allowAdditions: true,
+        fullTextSearch: true
+
+     })
+    ;
+
+  });
+  </script>
+</body>
+</html>

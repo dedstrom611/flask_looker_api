@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+
+  <title>DispatchHealth Client Dashboard</title>
+
+  <meta name="description" content="The DispatchHealth Client Dashboard">
+  <meta name="author" content="Dan Edstrom">
+
+
+  <link rel="stylesheet" type="text/css" href="../static/semantic-ui/dist/semantic.min.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="../static/semantic-ui/dist/semantic.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../static/semantic-ui/dist/components/dropdown.css">
+  <script type="text/javascript" src="../static/semantic-ui/dist/components/dropdown.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+  <!-- {{ url_for('static', filename='submit.css') }} -->
+  <link rel="stylesheet" type="text/css" href="../static/submit.css">
+  <script type="text/javascript" src="../static/submit.js"></script>
+
+</head>
+
+<body>
+  <div class="ui fixed  menu">
+    <div class="ui container">
+      <a href="/" class="header item">
+        DispatchHealth Client Dashboard
+      </a>
+    </div>
+  </div>
+
+  <div class="ui main container one column grid">
+
+    <div class="row">
+      <h1 class="ui dividing header">Unauthorized User</h1>
+    </div>
+    <div class="row">
+      <p>
+        Please log in to dashboard as an admin and refresh this page to continue.
+      </p>
+    </div>
+    <div class="row">
+        <a href="https://admin.dispatchhealth.com" target="_blank">Login to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

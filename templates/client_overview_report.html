@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* .container {
+    grid-template-columns: 300px 100px 100px 100px 300px 300px ;
+    grid-template-rows: 84px 168px 84px 84px 84px 168px;
+    text-align: center;
+    color: black;
+} */
+
+.container {
+  position: relative;
+  width: 1200px;
+  height: 672px;
+  text-align: center;
+  font-family: Futura;
+  font-weight: bold;
+}
+
+.image-space {
+  position: fixed;
+  width: 1200px;
+  height: 672px;
+}
+
+.cost-savings {
+  display: inline-block;
+  position: fixed;
+  top: 150px;
+  left: 70px;
+  font-size: 36px;
+    color: white;
+}
+
+.conditions-treated {
+  display:inline-block;
+    position: fixed;
+    top: 495px;
+    left: 30px;
+    font-size: 12px;
+    color: white;
+    line-height: 2.6;
+}
+
+.number-requests {
+  display: inline-block;
+    position: fixed;
+    top: 150px;
+    left: 460px;
+    font-size: 40px;
+    color: white;
+}
+
+.percent-web {
+  display: inline-block;
+  position: fixed;
+  top: 325px;
+  left: 346px;
+  font-size: 18px;
+  color: white;
+}
+
+.percent-mobile {
+  display: inline-block;
+  position: fixed;
+  top: 325px;
+  left: 446px;
+  font-size: 18px;
+  color: white;
+}
+
+.percent-phone {
+  display: inline-block;
+  position: fixed;
+  top: 325px;
+  left: 546px;
+  font-size: 18px;
+  color: white;
+}
+
+.avg-time-to-scene {
+  display: inline-block;
+    position: fixed;
+    top: 460px;
+    left: 390px;
+    font-size: 32px;
+    color: black;
+}
+
+.avg-time-on-scene {
+  display: inline-block;
+    position: fixed;
+    top: 460px;
+    left: 680px;
+    font-size: 32px;
+    color: white;
+}
+
+.nps-score {
+  display: inline-block;
+    position: fixed;
+    top: 518px;
+    left: 1020px;
+    font-size: 48px;
+    color: white;
+}
+
+.bounceback-rate {
+  display: inline-block;
+    position: fixed;
+    top: 260px;
+    left: 740px;
+    font-size: 28px;
+    color: white;
+}
+
+.ed-escalations {
+  display: inline-block;
+    position: fixed;
+    top: 330px;
+    left: 740px;
+    font-size: 28px;
+    color: white;
+}
+
+.average-age-text {
+  display: inline-block;
+    position: fixed;
+    top: 100px;
+    left: 940px;
+    font-size: 32px;
+    color: #F16464;
+}
+
+.average-age {
+  display: inline-block;
+    position: fixed;
+    top: 140px;
+    left: 1060px;
+    font-size: 56px;
+    color: white;
+}
+
+.pct-female {
+  display: inline-block;
+    position: fixed;
+    top: 256px;
+    left: 1064px;
+    font-size: 20px;
+    color: #F16464;
+}
+
+.pct-male {
+  display: inline-block;
+    position: fixed;
+    top: 310px;
+    left: 1064px;
+    font-size: 20px;
+    color: white;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="image-space">
+    <img src="https://s3.amazonaws.com/dispatchhealth-analytics/Dispatch-Desktop-Dashboard-R3-Blank.png" width="1200" height="672" alt="DispatchHealth">
+  </div>
+  <div class="cost-savings" width="300" height="384">${{ cost_svg }}k</div>
+  <div class="number-requests" width="300" height="384">{{ num_requests}}</div>
+  <div class="conditions-treated" width="300" height="384">
+    <p align="left">
+      {% for i in range(5) %}
+        {{icd_pcts[i]}}% {{ icd_codes[i] }}<br/>
+      {% endfor %}
+    </p>
+  </div>
+  <div class="percent-web" width="300" height="384">{{ pct_web }}%</div>
+  <div class="percent-phone" width="300" height="384">{{ pct_phone }}%</div>
+  <div class="percent-mobile" width="300" height="384">{{ pct_mobile }}%</div>
+  <div class="avg-time-to-scene" width="300" height="384">{{ on_route_time }} MINS</div>
+  <div class="avg-time-on-scene" width="300" height="384">{{ on_scene_time }} MINS</div>
+  <div class="nps-score" width="300" height="384">{{ nps }}</div>
+  <div class="bounceback-rate" width="300" height="384">{{ bb_rate }}%</div>
+  <div class="ed-escalations" width="300" height="384">{{ ed_escalation }}%</div>
+  <div class="average-age-text" width="300" height="384"><p>AVG<br>AGE</p></div>
+  <div class="average-age" width="300" height="384">{{ avg_age }}</div>
+  <div class="pct-female" width="300" height="384">{{ pct_female }}%</div>
+  <div class="pct-male" width="300" height="384">{{ pct_male }}%</div>
+</div>
+
+<div>
+  <p>Selected Markets: {{ markets }}<br/>
+  Selected Channels: {{ channels }}<br/>
+  Selected Channel Types: {{ subtypes }}<br/>
+  Start Date: {{ start_date[0] }}<br/>
+  End Date: {{ end_date[0] }}<br/>
+  <a href="/">Create another report</a>
+  </p>
+</div>
+
+</body>
+</html>
